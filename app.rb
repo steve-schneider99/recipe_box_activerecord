@@ -11,3 +11,8 @@ require('pry')
 get('/') do
   erb(:index)
 end
+
+get('/recipes') do
+  @recipes = Recipe.all()
+  erb(:recipe_list)
+end
