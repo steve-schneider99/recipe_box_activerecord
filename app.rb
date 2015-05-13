@@ -36,3 +36,23 @@ post('/add_ingredient') do
   @recipe = Recipe.find(recipe_id)
   erb(:recipe_detail)
 end
+
+patch('/recipe/:id') do
+  instructions = params.fetch("instructions")
+  @update_recipe = Recipe.find(params.fetch("id").to_i)
+  @update_recipe.update({:instructions => instructions})
+  @recipe = Recipe.find(params.fetch("id").to_i)
+  erb(:recipe_detail)
+end
+
+get('/categories') do
+  @categories = Category.all()
+  erb(:category_list)
+end
+
+post('/add_category') do
+  name = params.fetch("name")
+  Category.create({:name => name})
+  @categories = Category.all()
+  erb(:category_list)
+end
