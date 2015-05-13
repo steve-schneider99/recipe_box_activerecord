@@ -2,9 +2,14 @@
 
 <ul>
   <% @recipes.each do |recipe| %>
-    <li><a href="/recipe/<%= recipe.id %>"><%= recipe.name %></a></li>
+    <li>
+      <a href="/recipe/<%= recipe.id %>">Recipe Name: <%= recipe.name %></a>
+      <p><%= recipe.categories %></p>
+    </li>
   <% end %>
 </ul>
+
+<h4>Add a recipe below:</h4>
 
 <form action="/add_recipe" method="post">
   <label for = "name">Name:</label>
