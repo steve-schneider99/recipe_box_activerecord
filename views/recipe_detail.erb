@@ -21,7 +21,27 @@
   <button type="submit">Submit</button>
 </form>
 
-<h3>The instructions are:</h3>
+
+<h4>The categories are:</h4>
+
+<ul>
+  <% @recipe.categories.each() do |category| %>
+  <li><%= category.name() %></li>
+  <% end %>
+</ul>
+
+<h4>Add a category below:</h4>
+
+<form action="/recipe/add_category" method="post">
+  <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
+
+  <label for="name">Category:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Submit</button>
+</form>
+
+<h4>The instructions are:</h4>
 
 
   <%= @recipe.instructions() %>

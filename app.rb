@@ -56,3 +56,11 @@ post('/add_category') do
   @categories = Category.all()
   erb(:category_list)
 end
+
+post('/recipe/add_category') do
+  name = params.fetch("name")
+  recipe_id = params.fetch("recipe_id")
+  Category.create({:name => name, :recipe_ids => recipe_id})
+  @recipe = Recipe.find(recipe_id)
+  erb(:recipe_detail)
+end
