@@ -57,3 +57,8 @@
 
   <button type="submit">Submit</button>
 </form>
+
+<form action='/recipe/<%= @recipe.id %>' method="post">
+  <input type="hidden" name="_method" value="delete">
+  <button type="submit">Delete this recipe</button>
+</form>

@@ -64,3 +64,11 @@ post('/recipe/add_category') do
   @recipe = Recipe.find(recipe_id)
   erb(:recipe_detail)
 end
+
+delete('/recipe/:id') do
+  id = params.fetch("id")
+  @recipe = Recipe.find(id)
+  @recipe.destroy()
+  @recipes = Recipe.all()
+  erb(:recipe_list)
+end
