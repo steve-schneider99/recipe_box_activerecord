@@ -9,4 +9,12 @@ describe(Recipe) do
       expect(test_recipe.ingredients).to(eq([test_ingredient, test_ingredient2]))
     end
   end
+
+  describe('#categories') do
+    it("lists the categories of a recipe") do
+      test_category = Category.create({:name => "Italian"})
+      test_recipe = Recipe.new({:name => "pizza", :instructions => "put in oven", :rating => 5, :category_ids => [test_category.id()]})
+      expect(test_recipe.categories).to(eq([test_category]))
+    end
+  end
 end
