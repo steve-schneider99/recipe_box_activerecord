@@ -35,11 +35,16 @@ get('/recipe/:id') do
   erb(:recipe_detail)
 end
 
-post('/add_ingredient') do
-  name = params.fetch("name")
-  recipe_id = params.fetch("recipe_id")
-  Ingredient.create({:name => name, :recipe_ids => recipe_id})
-  @recipe = Recipe.find(recipe_id)
+patch('/add_ingredient/:id') do
+  @name = params.fetch("name")
+  @recipe_id = params.fetch("id")
+  @recipe = Recipe.find(@recipe_id)
+  @new_ing = Ingredient.new({:name => @name, :recipe_ids => @recipe_id})
+  if @new_ing.save()
+  else
+    update_ingredient = Ingredient.find_name(@name)
+    @recipe.ingredients.push(update_ingredient)
+  end
   erb(:recipe_detail)
 end
 
