@@ -66,6 +66,20 @@
   <button type="submit">Submit</button>
 </form>
 
+<h4>Rate this Recipe:</h4>
+
+<p>This recipe's current rating is: <%= @recipe.rating %></p>
+
+<form action="/recipe/add_rating" method="post">
+  <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
+
+  <label for="rating">Rating:</label>
+  <input id="rating" name="rating" type="text">
+
+  <button type="submit">Submit</button>
+</form>
+
+<br>
 <form action='/recipe/<%= @recipe.id %>' method="post">
   <input type="hidden" name="_method" value="delete">
   <button type="submit">Delete this recipe</button>

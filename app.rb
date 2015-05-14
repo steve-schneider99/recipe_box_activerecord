@@ -99,3 +99,20 @@ get('/ingredient/:id') do
   @ingredient = Ingredient.find(params.fetch("id"))
   erb(:ingredient_detail)
 end
+
+delete('/category/:id') do
+  id = params.fetch("id")
+  @category = Category.find(id)
+  @category.destroy()
+  @categories = Category.all()
+  erb(:category_list)
+end
+
+post('/recipe/add_rating') do
+  rating = params.fetch("rating")
+  recipe_id = params.fetch("recipe_id").to_i
+  updated_rating = Recipe.find(recipe_id)
+  updated_rating.update({:rating => rating})
+  @recipe = Recipe.find(recipe_id)
+  erb(:recipe_detail)
+end
