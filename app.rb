@@ -89,3 +89,13 @@ patch('/category/:id/add_recipe') do
   @recipes_uncat = Recipe.all()
   erb(:category_detail)
 end
+
+get('/ingredients') do
+  @ingredients = Ingredient.all()
+  erb(:ingredient_list)
+end
+
+get('/ingredient/:id') do
+  @ingredient = Ingredient.find(params.fetch("id"))
+  erb(:ingredient_detail)
+end
