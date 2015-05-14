@@ -10,4 +10,15 @@ describe('The app', :type => :feature) do
       expect(page).to have_content('Recipes')
     end
   end
+
+  describe('the recipes path') do
+    it('visits the index') do
+      visit('/')
+      click_link('Go to the recipes list')
+      fill_in('name', with: "chili")
+      click_button('Submit')
+      expect(page).to have_content("chili")
+    end
+  end
+
 end

@@ -4,6 +4,7 @@ class Recipe < ActiveRecord::Base
 
   validates(:name, :presence => true)
 
+
   define_singleton_method(:find_name) do |name|
 
     found_recipe = nil
