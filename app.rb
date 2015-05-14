@@ -21,9 +21,13 @@ end
 post('/add_recipe') do
   @recipes = Recipe.all()
   name = params.fetch("name")
-  Recipe.create({:name => name})
-  @rating_list = Recipe.order(rating: :desc)
-  erb(:recipe_list)
+  @new_recipe = Recipe.new({:name => name})
+  if @new_recipe.save()
+    @rating_list = Recipe.order(rating: :desc)
+    erb(:recipe_list)
+  else
+    erb(:errors)
+  end
 end
 
 get('/recipe/:id') do
