@@ -22,3 +22,11 @@
 </form>
 
 <h3>Recipes listed by rating(1-5)</h3>
+
+<% @rating_list.each do |recipe| %>
+  <% if recipe.rating() == nil %>
+    <li><%= recipe.name %> has no rating</li>
+  <% else %>
+    <li><%= recipe.rating() %> - <%= recipe.name() %></li>
+  <% end %>
+<% end %>

@@ -14,15 +14,15 @@ end
 
 get('/recipes') do
   @recipes = Recipe.all()
+  @rating_list = Recipe.order(rating: :desc)
   erb(:recipe_list)
 end
 
 post('/add_recipe') do
   @recipes = Recipe.all()
   name = params.fetch("name")
-  # category = params.fetch("category")
-  # instructions = params.fetch("instructions")
   Recipe.create({:name => name})
+  @rating_list = Recipe.order(rating: :desc)
   erb(:recipe_list)
 end
 
@@ -72,6 +72,7 @@ delete('/recipe/:id') do
   @recipe = Recipe.find(id)
   @recipe.destroy()
   @recipes = Recipe.all()
+  @rating_list = Recipe.order(rating: :desc)
   erb(:recipe_list)
 end
 
