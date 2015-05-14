@@ -3,7 +3,8 @@ class Recipe < ActiveRecord::Base
   has_and_belongs_to_many(:categories)
 
   validates(:name, :presence => true)
-
+  validates(:rating, numericality: {greater_than_or_equal_to: 0})
+  validates(:rating, numericality: {less_than: 6})
 
   define_singleton_method(:find_name) do |name|
 

@@ -66,8 +66,11 @@
 </form>
 
 <h4>Rate this Recipe:</h4>
-
+<% if @recipe.rating == 0 %>
+<p>This recipe currently does not have a rating.</p>
+<% else %>
 <p>This recipe's current rating is: <%= @recipe.rating %></p>
+<% end %>
 
 <form action="/recipe/add_rating" method="post">
   <input id="recipe_id" name="recipe_id" type="hidden" value="<%= @recipe.id() %>">
