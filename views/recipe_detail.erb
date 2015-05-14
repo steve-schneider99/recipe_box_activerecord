@@ -3,13 +3,15 @@
 <a href="/recipes">Go back to the recipe list</a>
 
 <h3>The ingredients are:</h3>
-
-<ul>
-  <% @recipe.ingredients.each() do |ingredient| %>
-  <li><%= ingredient.name() %></li>
-  <% end %>
-</ul>
-
+    <% if @recipe.ingredients == [] %>
+      <p>There are no ingredients for this recipe</p>
+    <% else %>
+      <ul>
+        <% @recipe.ingredients.each() do |ingredient| %>
+        <li><%= ingredient.name() %></li>
+        <% end %>
+      </ul>
+    <% end %>
 <h4>Add an ingredient below:</h4>
 
 <form action="/add_ingredient" method="post">
@@ -22,13 +24,17 @@
 </form>
 
 
-<h4>The categories are:</h4>
-
-<ul>
-  <% @recipe.categories.each() do |category| %>
-  <li><%= category.name() %></li>
+<h3>The categories are:</h3>
+  <% if @recipe.categories == [] %>
+    <p>There are no categories for this recipe</p>
+  <% else %>
+    <ul>
+      <% @recipe.categories.each() do |category| %>
+      <li><%= category.name() %></li>
+      <% end %>
+    </ul>
   <% end %>
-</ul>
+
 
 <h4>Add a category below:</h4>
 
@@ -41,10 +47,12 @@
   <button type="submit">Submit</button>
 </form>
 
-<h4>The instructions are:</h4>
-
-
-  <%= @recipe.instructions() %>
+<h3>The instructions are:</h3>
+  <% if @recipe.instructions == nil %>
+    <p>There are no instructions</p>
+  <% else %>
+    <%= @recipe.instructions() %>
+  <% end %>
 
 
 <h4>Add/Edit instructions below:</h4>

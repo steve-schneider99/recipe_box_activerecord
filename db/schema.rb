@@ -20,24 +20,24 @@ ActiveRecord::Schema.define(version: 20150513173226) do
     t.string "name"
   end
 
+  create_table "categories_recipes", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "category_id"
+  end
+
   create_table "ingredients", force: :cascade do |t|
     t.string "name"
   end
 
-  create_table "recipe_categories", force: :cascade do |t|
-    t.integer "recipe_id_id"
-    t.integer "category_id_id"
+  create_table "ingredients_recipes", force: :cascade do |t|
+    t.integer "recipe_id"
+    t.integer "ingredient_id"
   end
 
   create_table "recipes", force: :cascade do |t|
     t.string  "name"
     t.string  "instructions"
     t.integer "rating"
-  end
-
-  create_table "recipes_ingredients", force: :cascade do |t|
-    t.integer "recipe_id_id"
-    t.integer "ingredient_id_id"
   end
 
 end

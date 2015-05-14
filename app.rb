@@ -20,6 +20,8 @@ end
 post('/add_recipe') do
   @recipes = Recipe.all()
   name = params.fetch("name")
+  # category = params.fetch("category")
+  # instructions = params.fetch("instructions")
   Recipe.create({:name => name})
   erb(:recipe_list)
 end
@@ -71,4 +73,19 @@ delete('/recipe/:id') do
   @recipe.destroy()
   @recipes = Recipe.all()
   erb(:recipe_list)
+end
+
+get('/category/:id') do
+  @category = Category.find(params.fetch("id"))
+  @recipes_uncat = Recipe.all()
+  erb(:category_detail)
+end
+
+patch('/category/:id/add_recipe') do
+  update_recipe = Recipe.find_name(params.fetch("category_add_recipe"))
+  update_category = Category.find(params.fetch("id"))
+  update_recipe.update({:category_ids => [update_category.id()]})
+  @category = Category.find(params.fetch("id"))
+  @recipes_uncat = Recipe.all()
+  erb(:category_detail)
 end
