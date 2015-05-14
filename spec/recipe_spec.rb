@@ -17,4 +17,9 @@ describe(Recipe) do
       expect(test_recipe.categories).to(eq([test_category]))
     end
   end
+
+    it("validates the presence of a name") do
+      recipe = Recipe.new({:name => ""})
+      expect(recipe.save()).to(eq(false))
+    end
 end
